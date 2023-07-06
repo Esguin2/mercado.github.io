@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestión de Clientes</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url("https://articles-img.sftcdn.net/image/upload/v1582331925/paisaje_7_smhg4t.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      width: 900px;
+      margin: 20px auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+    }
+
+    .form-container {
+      width: 400px;
+      margin-right: 20px;
+    }
+
+    .table-container {
+      flex-grow: 1;
+    }
+
+    form {
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    input::placeholder {
+      font-style: italic;
+      opacity: 0.7;
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeInAnimation ease-in 1s forwards;
+    }
+
+    @keyframes fadeInAnimation {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .title-container {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background-color: #f9f9f9;
+      border: none;
+    }
+
+    .card-header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+    }
+
+    .card-header h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container-logo {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .container-logo i {
+      font-size: 60px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .container-logo h1 {
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title-container">
+      <h1 class="title">Gestión de Clientes</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Formulario para crear UwU-->
+        <div class="card">
+          <div class="card-header">
+            <h2>Agregar Cliente</h2>
+          </div>
+          <div class="card-body">
+            <form method="POST"  class="fade-in">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="cedula">Cédula:</label>
+                <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Ingrese la cédula" required>
+              </div>
+              <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" class="form-control" id="nombre" name="nombreCompleto" placeholder="Ingrese el nombre completo" required>
+              </div>
+              <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" class="form-control" id="direccion" name="dirrecion" placeholder="Ingrese la dirección" required>
+              </div>
+              <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el teléfono" required>
+              </div>
+              <div class="form-group">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese el correo electrónico" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Crear Cliente</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <!-- Tabla para mostrar UnU-->
+        <div class="card">
+          <div class="card-header">
+            <h2>Listado de Clientes</h2>
+          </div>
+          <div class="card-body">
+            <form method="GET">
+              <div class="form-group">
+                <label for="search">Buscar por Cédula:</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="search" name="search" placeholder="Ingrese la cédula del cliente" value="{{ search }}">
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div style="overflow-y: scroll; max-height: 400px;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Correo Electrónico</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in datos %}
+                  <tr>
+                    <td>{{ i.cedula }}</td>
+                    <td>{{ i.nombreCompleto }}</td>
+                    <td>{{ i.dirrecion }}</td>
+                    <td>{{ i.telefono }}</td>
+                    <td>{{ i.correo }}</td>
+                    <td>
+                      <!-- Botones para editar y eliminar 7w7 -->
+                      <a href="/actualizar/{{i.cedula}}" class="btn btn-primary btn-sm">Actualizar</a>
+                      <a href="/eliminar/{{i.cedula}}" name='eliminar' value={{ i.cedula }} type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">Eliminar</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- enlaces -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

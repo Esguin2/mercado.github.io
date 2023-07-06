@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supermercado XYZ</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/animate.css" rel="stylesheet">
+  <style>
+    /* Navbar */
+    .navbar {
+      background-color: #f8f9fa;
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #333333;
+    }
+
+    /* Product Cards */
+    .product-card {
+      background-color: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      height: 100%; /* Establece la altura al 100% del contenedor padre */
+      overflow: hidden; /* Ocultar contenido si es más grande que el card */
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px; /* Altura fija para las imágenes de productos */
+      object-fit: cover; /* Ajustar la imagen en el contenedor */
+      border-radius: 10px;
+    }
+
+    .product-card h4 {
+      margin-bottom: 10px;
+      color: #333333;
+      font-size: 18px;
+    }
+
+    .product-card p {
+      color: #777777;
+      font-size: 14px;
+    }
+
+    /* Sections */
+    section {
+      padding: 50px 0;
+      background-color: #f8f9fa;
+      text-align: center;
+    }
+
+    section h2 {
+      margin-bottom: 30px;
+      font-size: 32px;
+      color: #333333;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333333;
+      color: #ffffff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .footer-links a {
+      color: #ffffff;
+      margin-right: 10px;
+    }
+
+    /* Animaciones */
+    .product-card:hover {
+      transform: scale(1.03); /* Hace que el card se agrande ligeramente en hover */
+    }
+
+  /* Promotions */
+  #promotions {
+    border-bottom: 1px solid #f1c5d5;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fde3e8;
+    border-radius: 10px;
+    text-align: center;
+    animation-name: slideInLeft;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+
+  #promotions h2 {
+    color: #f15878;
+    font-size: 32px;
+    margin-bottom: 20px;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+  }
+
+  #promotions .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #promotions .container p {
+    margin-bottom: 20px;
+    color: #777777;
+  }
+
+  #promotions .container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  /* Spam */
+  #spam {
+    border-bottom: 1px solid #cbe7ff;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #edf7ff;
+    border-radius: 10px;
+    text-align: center;
+    animation-name: slideInRight;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+
+  #spam h2 {
+    color: #45aaf2;
+    font-size: 32px;
+    margin-bottom: 20px;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+  }
+
+  #spam .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #spam .container p {
+    margin-bottom: 20px;
+    color: #777777;
+  }
+
+  #spam .container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  /* Gifts */
+  #gifts {
+    border-bottom: 1px solid #d9f2e6;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #eefaf4;
+    border-radius: 10px;
+    text-align: center;
+    animation-name: slideInLeft;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+
+  #gifts h2 {
+    color: #33d6a6;
+    font-size: 32px;
+    margin-bottom: 20px;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+  }
+
+  #gifts .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #gifts .container p {
+    margin-bottom: 20px;
+    color: #777777;
+  }
+
+  #gifts .container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  /* Sweepstakes */
+  #sweepstakes {
+    border-bottom: 1px solid #f7e5cb;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff5e6;
+    border-radius: 10px;
+    text-align: center;
+    animation-name: slideInRight;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+
+  #sweepstakes h2 {
+    color: #f2a154;
+    font-size: 32px;
+    margin-bottom: 20px;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+  }
+
+  #sweepstakes .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #sweepstakes .container p {
+    margin-bottom: 20px;
+    color: #777777;
+  }
+
+  #sweepstakes .container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  /* Animaciones */
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Supermercado XYZ</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'ambos' %}">Clientes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'verproductos' %}">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'proveedor' %}">Proveedores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'verventas' %}">Ventas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    {% for i in datos %}
+    {% if forloop.counter0|divisibleby:3 %}
+    <div class="row">
+    {% endif %}
+      <div class="col-md-4">
+        <div class="product-card">
+          <h4>{{ i.nombreProducto }}</h4>
+          <p>Precio: {{ i.compra }}</p>
+          <a href="/insertarventa/{{ i.codigo_producto }}/" class="btn btn-primary">Comprar</a>
+        </div>
+      </div>
+    {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+  
+<!--Promociones e informa-->
+<section id="promotions">
+  <div class="container">
+    <h2>Promociones</h2>
+    <p>Información sobre promociones y descuentos.</p>
+    <a href="#" class="promo-link">
+      <img src="https://1.bp.blogspot.com/-DG82AsVSeV0/V1O9bwynUNI/AAAAAAAAACk/rPmi25e7vj48WjsgIOPXMCla1dyx3eouQCLcB/s1600/1356472769_261212tecno3.jpg" alt="Promoción 1">
+    </a>
+  </div>
+</section>
+
+<section id="spam">
+  <div class="container">
+    <h2>Spam</h2>
+    <p>Información sobre ofertas especiales y novedades.</p>
+    <a href="#" class="spam-link">
+      <img src="https://kimriderr.com/wp-content/uploads/2021/01/principiantes-250-7.png" alt="Spam 1">
+    </a>
+  </div>
+</section>
+
+<section id="gifts">
+  <div class="container">
+    <h2>Regalos</h2>
+    <p>Información sobre regalos y premios.</p>
+    <a href="#" class="gift-link">
+      <img src="https://i.pinimg.com/originals/ea/ef/a4/eaefa46f756a91b98e7f9ac874e55aea.jpg" alt="Regalo 1">
+    </a>
+  </div>
+</section>
+
+<section id="sweepstakes">
+  <div class="container">
+    <h2>Sorteos</h2>
+    <p>Información sobre sorteos y concursos.</p>
+    <a href="#" class="sweepstakes-link">
+      <img src="https://acroadtrip.blob.core.windows.net/catalogo-imagenes/xl/RT_V_bdda7675390540959fd8f607d6da3b4d.jpg" alt="Sorteo 1">
+    </a>
+  </div>
+</section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">Aviso de privacidad</a>
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Contacto</a>
+      </div>
+      <p>Derechos de autor © 2023 Supermercado XYZ. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Animaciones de JavaScript
+
+    // Anima las imágenes al hacer hover
+    $('.product-card img').hover(function() {
+      $(this).addClass('animated pulse');
+    }, function() {
+      $(this).removeClass('animated pulse');
+    });
+
+    // Anima los enlaces de promociones al hacer hover
+    $('.promo-link').hover(function() {
+      $(this).addClass('animated tada');
+    }, function() {
+      $(this).removeClass('animated tada');
+    });
+
+    // Anima los enlaces de spam al hacer hover
+    $('.spam-link').hover(function() {
+      $(this).addClass('animated bounce');
+    }, function() {
+      $(this).removeClass('animated bounce');
+    });
+
+    // Anima los enlaces de regalos al hacer hover
+    $('.gift-link').hover(function() {
+      $(this).addClass('animated flip');
+    }, function() {
+      $(this).removeClass('animated flip');
+    });
+
+    // Anima los enlaces de sorteos al hacer hover
+    $('.sweepstakes-link').hover(function() {
+      $(this).addClass('animated swing');
+    }, function() {
+      $(this).removeClass('animated swing');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Insertar Cliente</title>
+</head>
+<body>
+    <form action="/insertar/" method="post">
+        {% csrf_token %}
+        <input type="text" name="cedula" placeholder="cedula">
+        <input type="text" name="nombreCompleto" placeholder="Nombre Completo">
+        <input type="text" name="dirrecion" placeholder="Direcion">
+        <input type="text" name="telefono" placeholder="Telefono">
+        <input type="text" name="correo" placeholder="Correo">
+        <input type="submit" value="Registrar">
+    </form>
+    
+</body>
+</html>

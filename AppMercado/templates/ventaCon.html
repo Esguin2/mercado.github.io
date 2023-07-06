@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestión de Productos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-image: url('https://fondosmil.com/fondo/13736.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: white;
+    }
+
+    .container {
+      margin-top: 200px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    form {
+      width: 400px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input.form-control {
+      background-color: transparent;
+      border-color: transparent;
+      border-bottom: 1px solid #ccc;
+      border-radius: 0;
+      box-shadow: none;
+      color: white;
+    }
+
+    input.form-control::placeholder {
+      color: #ccc;
+    }
+
+    input.form-control:hover,
+    input.form-control:focus {
+      border-color: #ccc;
+      box-shadow: none;
+    }
+
+    button.btn-primary {
+      width: 49%;
+    }
+
+    button.btn-success {
+      width: 49%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Comprar</h1>
+  
+    <!-- Formulario de inserción de productos -->
+    <form method="post" action="/insertarventa2/">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="nitproveedor">Cliente</label>
+        
+        <select name="id_cliente" class="form-select" aria-label="Default select example">
+          {% for clientes in datos %}
+            <option value="{{ clientes.cedula }}">{{ clientes.nombreCompleto }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="precio_compra">Producto</label>
+        <input type="text" value="{{ valor }}" class="form-control" id="precio_compra" name="id_producto" placeholder="Ingrese el precio de compra" required readonly>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Confirmar Compra</button>
+    </form>
+    
+  
+    <!-- Alert de producto guardado -->
+    {% if mensaje %}
+    <div class="alert alert-success" role="alert">
+      {{ mensaje }}
+    </div>
+    {% endif %}
+  
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>
+                Cedula
+            </th>
+            <th>
+                Nombre Completo
+            </th>
+            <th>
+                Direcion
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Correo
+            </th>
+        </tr>
+        {% for i in datos %}
+        <tr>
+            <td>
+                {{i.cedula}}
+            </td>
+            <td>
+                {{i.nombreCompleto}}
+            </td>
+            <td>
+                {{i.dirrecion}}
+            </td>
+            <td>
+                {{i.telefono}}
+            </td>
+            <td>
+                {{i.correo}}
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    
+</body>
+</html>
